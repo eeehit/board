@@ -15,14 +15,6 @@ public class UserServiceImpl implements UserService {
     @Autowired
     UserRepository userRepository;
 
-    public Boolean login(String id, String pw) {
-        User user = this.userRepository.findByUsername(id);
-        if ((user.getPassword().equals(pw))) {
-            return true;
-        }
-        return false;
-    }
-
     public User loadUserByUsername(String id) {
         User user = this.userRepository.findByUsername(id);
         return user;

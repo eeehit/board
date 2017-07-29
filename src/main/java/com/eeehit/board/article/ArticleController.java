@@ -19,8 +19,10 @@ public class ArticleController {
 
 	@RequestMapping(value = "id/{id}", method = RequestMethod.GET)
 	@ResponseBody
-	public String getArticleById(@PathVariable(value = "id", required = true) long id) {
+	public ModelAndView getArticleById(@PathVariable(value = "id", required = true) long id) {
 		Article article = articleService.getArticleById(id);
-		return article.getId() + article.getTitle() + article.getContent();
+		ModelAndView mv = new ModelAndView("article");
+		mv.addObject("article", article);
+		return mv;
 	}
 }

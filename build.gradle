@@ -43,4 +43,7 @@ dependencies {
 
 	//Security
 	compile('org.springframework.boot:spring-boot-starter-security')
+
+	//Session
+	compile('org.springframework.session:spring-session-data-redis')
 }

@@ -37,7 +37,7 @@ public class BoardApplication implements CommandLineRunner {
 	public void run(String... args) throws Exception {
 		articleRepository.save(new Article("do kka bi", "awesome"));
 		articleRepository.save(new Article("harry potter", "good"));
-		userRepository.save(new User("Trinity", "hello", "admin"));
-		userRepository.save(new User("guest", "guest", "guest"));
+		userRepository.save(new User("Trinity", "hello", "ROLE_ADMIN"));
+		userRepository.save(new User("guest", "guest", "ROLE_GUEST"));
 	}
 }

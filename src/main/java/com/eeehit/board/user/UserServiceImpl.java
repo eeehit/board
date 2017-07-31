@@ -34,4 +34,8 @@ public class UserServiceImpl implements UserService {
         PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
         return passwordEncoder;
     }
+
+    public List<User> getUserList(){
+        return this.userRepository.findAll();
+    }
 }

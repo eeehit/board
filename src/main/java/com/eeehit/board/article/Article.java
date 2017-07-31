@@ -15,14 +15,18 @@ public class Article {
 	@Column(length = 255, nullable = false)
 	private String content;
 
+	@Column(length = 30, nullable = true)
+	private String author;
+
 	public Article() {
 		this.setTitle(null);
 		this.setContent(null);
 	}
 
-	public Article(String title, String content) {
+	public Article(String title, String content, String author) {
 		this.setTitle(title);
 		this.setContent(content);
+		this.setAuthor(author);
 	}
 
 	public void setTitle(String title) {
@@ -43,5 +47,13 @@ public class Article {
 
 	public String getContent() {
 		return content;
+	}
+
+	public String getAuthor() {
+		return author;
+	}
+
+	public void setAuthor(String author) {
+		this.author = author;
 	}
 }

@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpSession;
+
 /**
  * Created by sppark on 2017-05-21.
  */
@@ -30,11 +32,17 @@ public class ArticleController {
 
 	@RequestMapping(value = "{id}/modify", method = RequestMethod.GET)
 	@ResponseBody
-	@Secured({"ROLE_ADMIN"})
-	public ModelAndView getArticleById2(@PathVariable(value = "id", required = true) long id) {
+	public ModelAndView getArticleById2(
+			@PathVariable(value = "id", required = true) long id,
+			HttpSession httpSession) {
 		Article article = articleService.getArticleById(id);
-		ModelAndView mv = new ModelAndView("article");
-		mv.addObject("article", article);
-		return mv;
+		String realAuthor = article.getAuthor();
+		String currentUser = (String) httpSession.getAttribute("username");
+		if (realAuthor.equals(currentUser)) {
+			ModelAndView mv = new ModelAndView("article");
+			mv.addObject("article", article);
+			return mv;
+		}
+		return new ModelAndView("error/403");
 	}
 }

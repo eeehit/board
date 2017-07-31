@@ -1,0 +1,26 @@
+<div class="container">
+    <div class="row">
+        <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+            {{#articleList}}
+                <div class="post-preview">
+                    <a href="/article/id/{{id}}">
+                        <h2 class="post-title">
+                            {{title}}
+                        </h2>
+                        <h3 class="post-subtitle">
+                            {{content}}
+                        </h3>
+                    </a>
+                    <p class="post-meta">Posted by <a href="#">Trinity</a> on July 8, 2014</p>
+                </div>
+            {{/articleList}}
+            <hr>
+            <!-- Pager -->
+            <ul class="pager">
+                <li class="next">
+                    <a href="#">Older Posts &rarr;</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>

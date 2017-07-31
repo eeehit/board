@@ -16,4 +16,8 @@ public class ArticleService {
 	public Article getArticleById(long id) {
 		return this.articleRepository.findById(id);
 	}
+
+	public List<Article> getArticleList() {
+		return this.articleRepository.findAll();
+	}
 }

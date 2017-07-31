@@ -22,7 +22,6 @@ public class ArticleController {
 
 	@RequestMapping(value = "{id}", method = RequestMethod.GET)
 	@ResponseBody
-	@Secured({"ROLE_GUEST", "ROLE_ADMIN"})
 	public ModelAndView getArticleById(@PathVariable(value = "id", required = true) long id) {
 		Article article = articleService.getArticleById(id);
 		ModelAndView mv = new ModelAndView("article");

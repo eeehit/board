@@ -13,7 +13,7 @@ import javax.servlet.http.HttpSession;
  */
 @Controller
 @RequestMapping("myPage")
-public class myPageController {
+public class MyPageController {
     @Autowired
     UserService userService;
 

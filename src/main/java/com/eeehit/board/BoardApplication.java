@@ -4,6 +4,7 @@ import com.eeehit.board.article.Article;
 import com.eeehit.board.article.ArticleRepository;
 import com.eeehit.board.user.User;
 import com.eeehit.board.user.UserRepository;
+import com.eeehit.board.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -22,6 +23,9 @@ public class BoardApplication implements CommandLineRunner {
 	@Autowired
 	UserRepository userRepository;
 
+	@Autowired
+	UserService userService;
+
 	public static void main(String[] args) {
 		SpringApplication.run(BoardApplication.class, args);
 	}
@@ -37,7 +41,7 @@ public class BoardApplication implements CommandLineRunner {
 	public void run(String... args) throws Exception {
 		articleRepository.save(new Article("do kka bi", "awesome"));
 		articleRepository.save(new Article("harry potter", "good"));
-		userRepository.save(new User("Trinity", "hello", "ROLE_ADMIN"));
-		userRepository.save(new User("guest", "guest", "ROLE_GUEST"));
+		userRepository.save(new User("Trinity", userService.passwordEncoder().encode("hello"), "ROLE_ADMIN"));
+		userRepository.save(new User("guest", userService.passwordEncoder().encode("guest"), "ROLE_GUEST"));
 	}
 }

@@ -13,13 +13,9 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.servlet.http.HttpSession;
-import java.util.ArrayList;
-import java.util.List;
 
 @Configuration
 @EnableWebSecurity
@@ -55,7 +51,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 String password = (String) authentication.getCredentials();
 
                 UserDetails loginUser = userService.loadUserByUsername(username);
-                if (loginUser.getPassword().equals(password)) {
+                boolean loginResult = userService.passwordEncoder().matches(password, loginUser.getPassword());
+
+                if (loginResult) {
                     Authentication auth = new UsernamePasswordAuthenticationToken(username, password, loginUser.getAuthorities());
                     httpSession.setAttribute("username", username);
                     return auth;
